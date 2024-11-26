@@ -1,26 +1,38 @@
-// Configuração do Chart.js
-Chart.defaults.font.family =
-  'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-Chart.defaults.font.size = 12;
+AOS.init({
+  duration: 800,
+  once: true,
+});
 
-// Função para gerar pontos do gráfico logarítmico
-function generateLogPoints(base, numPoints = 200) {
+const numberInput = document.getElementById("numberInput");
+const baseInput = document.getElementById("baseInput");
+const baseSlider = document.getElementById("baseSlider");
+const baseValue = document.getElementById("baseValue");
+const errorMessage = document.querySelector(".error-message");
+const canvas = document.getElementById("logChart");
+const scrollTopBtn = document.querySelector(".scroll-top");
+
+function calculateLog(number, base) {
+  return Math.log(number) / Math.log(base);
+}
+
+function generateLogPoints(base, numPoints = 1000) {
   const points = [];
-  const xMin = 0.1;
-  const xMax = 10;
-  for (let i = 0; i < numPoints; i++) {
+  const xMin = 0.01;
+  const xMax = 30;
+
+  for (let i = 0; i <= numPoints; i++) {
     const x = xMin + (i / numPoints) * (xMax - xMin);
-    const y = Math.log(x) / Math.log(base);
+    const y = calculateLog(x, base);
     points.push({ x, y });
   }
   return points;
 }
 
-// Classe para gerenciar o gráfico
 class LogarithmChart {
-  constructor() {
+  constructor(ctx) {
+    this.ctx = ctx;
     this.chart = null;
-    this.ctx = document.getElementById("logChart").getContext("2d");
+    this.initialize(2);
   }
 
   initialize(base) {
@@ -32,68 +44,165 @@ class LogarithmChart {
           {
             label: `log${base}(x)`,
             data: data,
-            borderColor: "#2563eb",
-            borderWidth: 2,
+            borderColor: "#4f46e5",
+            borderWidth: 3,
             fill: false,
             tension: 0.4,
             pointRadius: 0,
+            pointHoverRadius: 8,
+            pointHoverBackgroundColor: "#4f46e5",
+            pointHoverBorderColor: "#ffffff",
+            pointHoverBorderWidth: 2,
+          },
+
+          {
+            label: "Eixo X",
+            data: [
+              { x: 0, y: 0 },
+              { x: 30, y: 0 },
+            ],
+            borderColor: "#e5e7eb",
+            borderWidth: 2,
+            borderDash: [5, 5],
+            fill: false,
+            pointRadius: 0,
+            hidden: false,
+          },
+
+          {
+            label: "Eixo Y",
+            data: [
+              { x: 1, y: -10 },
+              { x: 1, y: 10 },
+            ],
+            borderColor: "#e5e7eb",
+            borderWidth: 2,
+            borderDash: [5, 5],
+            fill: false,
+            pointRadius: 0,
+            hidden: false,
+          },
+
+          {
+            label: "Ponto (1,0)",
+            data: [{ x: 1, y: 0 }],
+            pointBackgroundColor: "#f59e0b",
+            pointBorderColor: "#ffffff",
+            pointBorderWidth: 2,
+            pointRadius: 6,
+            pointHoverRadius: 8,
+            showLine: false,
           },
         ],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        layout: {
+          padding: {
+            top: 20,
+            right: 30,
+            bottom: 20,
+            left: 30,
+          },
+        },
         animation: {
-          duration: 500,
+          duration: 1000,
+          easing: "easeInOutQuart",
         },
         scales: {
           x: {
             type: "linear",
             position: "bottom",
+            min: 0,
+            max: 30,
+            grid: {
+              color: "rgba(0, 0, 0, 0.05)",
+              drawBorder: false,
+            },
+            ticks: {
+              stepSize: 2,
+              padding: 10,
+              color: "#666",
+              font: {
+                size: 12,
+                weight: 500,
+              },
+            },
             title: {
               display: true,
               text: "x",
+              padding: 20,
+              color: "#4f46e5",
               font: {
-                size: 14,
+                size: 16,
                 weight: "bold",
               },
-            },
-            grid: {
-              color: "rgba(0, 0, 0, 0.1)",
             },
           },
           y: {
-            type: "linear",
-            title: {
-              display: true,
-              text: "y",
+            min: -10,
+            max: 10,
+            grid: {
+              color: "rgba(0, 0, 0, 0.05)",
+              drawBorder: false,
+            },
+            ticks: {
+              stepSize: 2,
+              padding: 10,
+              color: "#666",
               font: {
-                size: 14,
-                weight: "bold",
+                size: 12,
+                weight: 500,
               },
             },
-            grid: {
-              color: "rgba(0, 0, 0, 0.1)",
+            title: {
+              display: true,
+              text: "y = logb(x)",
+              padding: 20,
+              color: "#4f46e5",
+              font: {
+                size: 16,
+                weight: "bold",
+              },
             },
           },
         },
         plugins: {
           legend: {
+            display: true,
             position: "top",
+            align: "center",
             labels: {
-              usePointStyle: true,
+              boxWidth: 15,
               padding: 20,
-            },
-          },
-          tooltip: {
-            mode: "index",
-            intersect: false,
-            callbacks: {
-              label: function (context) {
-                return `y = ${context.parsed.y.toFixed(3)}`;
+              font: {
+                size: 13,
+                weight: 500,
               },
             },
           },
+          tooltip: {
+            backgroundColor: "rgba(255, 255, 255, 0.9)",
+            titleColor: "#1f2937",
+            bodyColor: "#1f2937",
+            borderColor: "#e5e7eb",
+            borderWidth: 1,
+            padding: 12,
+            displayColors: false,
+            callbacks: {
+              label: function (context) {
+                if (context.dataset.label.includes("Eixo")) return null;
+                const x = context.parsed.x.toFixed(2);
+                const y = context.parsed.y.toFixed(2);
+                return `(${x}, ${y})`;
+              },
+            },
+          },
+        },
+        interaction: {
+          intersect: false,
+          mode: "nearest",
         },
       },
     };
@@ -112,166 +221,108 @@ class LogarithmChart {
   }
 }
 
-// Classe para gerenciar a calculadora
-class LogarithmCalculator {
-  constructor() {
-    this.numberInput = document.getElementById("numberInput");
-    this.baseInput = document.getElementById("baseInput");
-    this.calculateBtn = document.getElementById("calculateBtn");
-    this.result = document.getElementById("calculatorResult");
+const logChart = new LogarithmChart(canvas);
 
-    this.setupEventListeners();
+function validateInputs(number, base) {
+  if (number <= 0 || base <= 1) {
+    errorMessage.style.display = "block";
+    return false;
   }
-
-  setupEventListeners() {
-    this.calculateBtn.addEventListener("click", () => this.calculate());
-
-    // Adiciona evento de Enter nos inputs
-    [this.numberInput, this.baseInput].forEach((input) => {
-      input.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-          this.calculate();
-        }
-      });
-    });
-
-    // Validação em tempo real
-    [this.numberInput, this.baseInput].forEach((input) => {
-      input.addEventListener("input", () => {
-        this.validateInput(input);
-      });
-    });
-  }
-
-  validateInput(input) {
-    const value = parseFloat(input.value);
-    if (isNaN(value) || value <= 0) {
-      input.classList.add("error");
-      return false;
-    }
-    if (input === this.baseInput && value === 1) {
-      input.classList.add("error");
-      return false;
-    }
-    input.classList.remove("error");
-    return true;
-  }
-
-  calculate() {
-    if (
-      !this.validateInput(this.numberInput) ||
-      !this.validateInput(this.baseInput)
-    ) {
-      this.showError(
-        "Por favor, insira valores válidos (números positivos, base ≠ 1)"
-      );
-      return;
-    }
-
-    const number = parseFloat(this.numberInput.value);
-    const base = parseFloat(this.baseInput.value);
-
-    try {
-      const result = Math.log(number) / Math.log(base);
-      this.showResult(result, number, base);
-    } catch (error) {
-      this.showError("Erro ao calcular o logaritmo");
-    }
-  }
-
-  showResult(result, number, base) {
-    this.result.innerHTML = `
-            <div class="formula">
-                log<sub>${base}</sub>(${number}) = ${result.toFixed(4)}
-            </div>
-            <div class="additional-info">
-                <p>Outros logaritmos do número ${number}:</p>
-                <ul>
-                    <li>ln(${number}) = ${Math.log(number).toFixed(4)}</li>
-                    <li>log<sub>10</sub>(${number}) = ${Math.log10(
-      number
-    ).toFixed(4)}</li>
-                    <li>log<sub>2</sub>(${number}) = ${Math.log2(
-      number
-    ).toFixed(4)}</li>
-                </ul>
-            </div>
-        `;
-    this.result.classList.remove("error");
-  }
-
-  showError(message) {
-    this.result.innerHTML = `<div class="error-message">${message}</div>`;
-    this.result.classList.add("error");
-  }
+  errorMessage.style.display = "none";
+  return true;
 }
 
-// Classe para gerenciar exercícios
-class ExerciseManager {
-  constructor() {
-    this.setupExercises();
+numberInput.addEventListener("input", () => {
+  const number = parseFloat(numberInput.value);
+  const base = parseFloat(baseInput.value);
+
+  if (validateInputs(number, base)) {
+    const result = calculateLog(number, base);
   }
+});
 
-  setupExercises() {
-    document.querySelectorAll(".exercise").forEach((exercise) => {
-      const solutionBtn = exercise.querySelector(".toggle-solution");
-      const solution = exercise.querySelector(".solution");
+baseInput.addEventListener("input", () => {
+  const base = parseFloat(baseInput.value);
+  baseSlider.value = base.toFixed(1);
+  baseValue.textContent = base.toFixed(1);
+  logChart.update(base);
+});
 
-      if (solutionBtn && solution) {
-        solutionBtn.addEventListener("click", () => {
-          const isHidden = solution.style.display === "none";
-          solution.style.display = isHidden ? "block" : "none";
-          solutionBtn.textContent = isHidden
-            ? "Ocultar Solução"
-            : "Ver Solução";
+baseSlider.addEventListener("input", (e) => {
+  const base = parseFloat(e.target.value);
+  baseInput.value = base.toFixed(1);
+  baseValue.textContent = base.toFixed(1);
+  logChart.update(base);
+});
 
-          if (isHidden) {
-            solution.style.opacity = "0";
-            setTimeout(() => {
-              solution.style.opacity = "1";
-            }, 10);
-          }
-        });
-      }
-    });
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    scrollTopBtn.classList.add("visible");
+  } else {
+    scrollTopBtn.classList.remove("visible");
   }
-}
+});
 
-// Inicialização do aplicativo
-document.addEventListener("DOMContentLoaded", () => {
-  // Inicializa o gráfico
-  const chart = new LogarithmChart();
-  chart.initialize(2);
-
-  // Configura o slider da base
-  const baseSlider = document.getElementById("baseSlider");
-  const baseValue = document.getElementById("baseValue");
-
-  baseSlider.addEventListener("input", (e) => {
-    const base = parseFloat(e.target.value);
-    baseValue.textContent = base.toFixed(1);
-    chart.update(base);
+scrollTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
   });
+});
 
-  // Inicializa a calculadora
-  const calculator = new LogarithmCalculator();
+logChart.update(2);
 
-  // Inicializa o gerenciador de exercícios
-  const exerciseManager = new ExerciseManager();
+document.querySelectorAll("section").forEach((section) => {
+  section.addEventListener("mouseenter", () => {
+    section.classList.add("animate");
+  });
+});
 
-  // Adiciona smooth scroll para navegação
-  document.querySelectorAll("nav a").forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
+document.querySelectorAll("nav a, .header-buttons a").forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute("href").slice(1);
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const headerButtons = document.querySelectorAll(".header-buttons .button");
+
+  headerButtons.forEach((button) => {
+    button.addEventListener("click", function (e) {
       e.preventDefault();
-      const targetId = this.getAttribute("href");
-      const targetElement = document.querySelector(targetId);
+      const href = this.getAttribute("href");
+      const targetSection = document.querySelector(href);
 
-      if (targetElement) {
-        targetElement.scrollIntoView({
+      if (targetSection) {
+        targetSection.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
       }
     });
   });
+
+  const buttons = document.querySelectorAll(".button");
+  buttons.forEach((button) => {
+    button.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-2px)";
+    });
+
+    button.addEventListener("mouseleave", function () {
+      this.style.transform = "translateY(0)";
+    });
+  });
 });
+
+baseSlider.min = "1.1";
+baseSlider.max = "10";
+baseSlider.step = "0.1";

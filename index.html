@@ -3,101 +3,533 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Funções Logarítmicas" />
     <title>Funções Logarítmicas</title>
     <link rel="stylesheet" href="styles.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   </head>
   <body>
     <header>
-      <div class="container">
-        <h1>Funções Logarítmicas</h1>
+      <h1>Funções Logarítmicas</h1>
+
+      <div class="header-buttons">
+        <a href="#calculadora" class="button">
+          <i class="icon">📱</i>Calculadora
+        </a>
+        <a href="#exercicios" class="button">
+          <i class="icon">📖</i>Exemplos
+        </a>
       </div>
     </header>
 
     <nav>
-      <div class="container">
-        <ul>
-          <li><a href="#definicao">Definição</a></li>
-          <li><a href="#propriedades">Propriedades</a></li>
-          <li><a href="#regras">Regras</a></li>
-          <li><a href="#aplicacoes">Aplicações</a></li>
-          <li><a href="#exemplos">Exemplos</a></li>
-          <li><a href="#calculadora">Calculadora</a></li>
-          <li><a href="#exercicios">Exercícios</a></li>
-        </ul>
-      </div>
+      <ul>
+        <li><a href="#definicao">📚 Definição</a></li>
+        <li><a href="#historia">⏳ História</a></li>
+        <li><a href="#propriedades">📋 Propriedades</a></li>
+        <li><a href="#aplicacoes">🧪 Aplicações</a></li>
+        <li><a href="#calculadora">🔢 Calculadora</a></li>
+        <li><a href="#exercicios">✏️ Exercícios</a></li>
+      </ul>
     </nav>
 
-    <main class="container">
-      <section id="definicao" class="section">
+    <main>
+      <section id="definicao" data-aos="fade-up">
         <h2>Definição de Logaritmo</h2>
-        <div class="card">
+        <div class="content">
           <p>
             O logaritmo é a operação matemática que determina o expoente que uma
             base deve ter para resultar num determinado número.
           </p>
-          <div class="formula">
+          <div class="formula" data-aos="fade-right" data-aos-delay="200">
             Se b<sup>y</sup> = x, então log<sub>b</sub>(x) = y
           </div>
-          <div class="properties">
-            <p>Onde:</p>
-            <ul>
-              <li>b é a base do logaritmo (b > 0 e b ≠ 1)</li>
-              <li>x é o resultado do expoente (x > 0)</li>
-              <li>y é o logaritmo</li>
+        </div>
+      </section>
+
+      <section id="conceitos-basicos" data-aos="fade-up">
+        <h2>Conceitos Básicos</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Domínio</h3>
+            <p>
+              O domínio de uma função logarítmica log<sub>b</sub>(x) é o
+              conjunto dos números reais positivos (x > 0).
+            </p>
+            <div class="formula">D: ]0, +∞[</div>
+          </div>
+          <div class="info-card">
+            <h3>Contradomínio</h3>
+            <p>O contradomínio é o conjunto dos números reais (ℝ).</p>
+            <div class="formula">CD: ]-∞, +∞[</div>
+          </div>
+          <div class="info-card">
+            <h3>Zeros da Função</h3>
+            <p>A função logarítmica tem um zero quando x = 1.</p>
+            <div class="formula">log<sub>b</sub>(1) = 0</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="historia" data-aos="fade-up">
+        <h2>História dos Logaritmos</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="date">1614</span>
+            <h3>John Napier</h3>
+            <p>
+              Publicação da primeira tabela de logaritmos no livro "Mirifici
+              Logarithmorum Canonis Descriptio".
+            </p>
+          </div>
+          <div class="timeline-item">
+            <span class="date">1617</span>
+            <h3>Henry Briggs</h3>
+            <p>Introdução dos logaritmos de base 10 (logaritmos comuns).</p>
+          </div>
+          <div class="timeline-item">
+            <span class="date">1624</span>
+            <h3>Johannes Kepler</h3>
+            <p>Utilização dos logaritmos para cálculos astronômicos.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="date">1647</span>
+            <h3>Logaritmos Naturais</h3>
+            <p>
+              Introdução dos logaritmos naturais (base e) por Nicolaus Mercator.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="propriedades" data-aos="fade-up">
+        <h2>Propriedades dos Logaritmos</h2>
+        <div class="properties-grid">
+          <div class="property-card">
+            <h3>Propriedades Básicas</h3>
+            <ul class="propriedades-list">
+              <li>
+                <strong>Definição:</strong> Se b<sup>y</sup> = x, então
+                log<sub>b</sub>(x) = y
+                <span class="tooltip" data-tooltip="Base b > 0 e b ≠ 1"
+                  >ℹ️</span
+                >
+              </li>
+              <li>
+                <strong>Logaritmo de 1:</strong> log<sub>b</sub>(1) = 0
+                <span class="tooltip" data-tooltip="Válido para qualquer base b"
+                  >ℹ️</span
+                >
+              </li>
+              <li>
+                <strong>Logaritmo da base:</strong> log<sub>b</sub>(b) = 1
+                <span
+                  class="tooltip"
+                  data-tooltip="A base elevada a 1 é igual à própria base"
+                  >ℹ️</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="property-card">
+            <h3>Propriedades Operatórias</h3>
+            <ul class="propriedades-list">
+              <li>
+                <strong>Produto:</strong> log<sub>b</sub>(x·y) =
+                log<sub>b</sub>(x) + log<sub>b</sub>(y)
+                <div class="example">
+                  Exemplo: log₂(8·2) = log₂(8) + log₂(2) = 3 + 1 = 4
+                </div>
+              </li>
+              <li>
+                <strong>Quociente:</strong> log<sub>b</sub>(x/y) =
+                log<sub>b</sub>(x) - log<sub>b</sub>(y)
+                <div class="example">
+                  Exemplo: log₂(8/2) = log₂(8) - log₂(2) = 3 - 1 = 2
+                </div>
+              </li>
+              <li>
+                <strong>Potência:</strong> log<sub>b</sub>(x<sup>n</sup>) =
+                n·log<sub>b</sub>(x)
+                <div class="example">
+                  Exemplo: log₂(8²) = 2·log₂(8) = 2·3 = 6
+                </div>
+              </li>
             </ul>
           </div>
         </div>
+      </section>
 
-        <div class="card">
-          <h3>Tipos Principais de Logaritmos</h3>
-          <div class="grid">
-            <div class="log-type">
-              <h4>Logaritmo Natural (ln)</h4>
-              <p>Base e ≈ 2,71828...</p>
-              <div class="formula">ln(x) = log<sub>e</sub>(x)</div>
+      <section id="propriedades-avancadas" data-aos="fade-up">
+        <h2>Propriedades Avançadas</h2>
+        <div class="properties-grid">
+          <div class="property-card">
+            <h3>Propriedades Adicionais</h3>
+            <ul class="propriedades-list">
+              <li>
+                <strong>Inverso:</strong> logb(1/N) = -logb(N)
+                <div class="example">Exemplo: log₂(1/8) = -log₂(8) = -3</div>
+              </li>
+              <li>
+                <strong>Raiz:</strong> logb(√N) = (1/2)logb(N)
+                <div class="example">
+                  Exemplo: log₂(√16) = (1/2)log₂(16) = 2
+                </div>
+              </li>
+              <li>
+                <strong>Raiz n-ésima:</strong> logb(N^(1/k)) = (1/k)logb(N)
+                <div class="example">
+                  Exemplo: log₂(8^(1/3)) = (1/3)log₂(8) = 1
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="property-card">
+            <h3>Relações entre Logaritmos</h3>
+            <ul class="propriedades-list">
+              <li><strong>Decimal-Natural:</strong> log₁₀(x) = ln(x)/ln(10)</li>
+              <li>
+                <strong>Natural-Decimal:</strong> ln(x) = log₁₀(x)/log₁₀(e)
+              </li>
+              <li>
+                <strong>Mudança de Base:</strong> logₐ(x) = logb(x)/logb(a)
+                <div class="example">
+                  Permite converter entre diferentes bases de logaritmos
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="tipos-especiais" data-aos="fade-up">
+        <h2>Tipos Especiais de Logaritmos</h2>
+        <div class="special-types-grid">
+          <div class="type-card">
+            <h3>Logaritmo Natural (ln)</h3>
+            <p>É o logaritmo de base e (≈ 2,71828...)</p>
+            <div class="formula">ln(x) = log<sub>e</sub>(x)</div>
+            <p class="applications">
+              Usado em cálculo diferencial e crescimento natural
+            </p>
+          </div>
+
+          <div class="type-card">
+            <h3>Logaritmo Decimal (log)</h3>
+            <p>É o logaritmo de base 10</p>
+            <div class="formula">log(x) = log<sub>10</sub>(x)</div>
+            <p class="applications">Comum em escalas e medições científicas</p>
+          </div>
+
+          <div class="type-card">
+            <h3>Logaritmo Binário (lb)</h3>
+            <p>É o logaritmo de base 2</p>
+            <div class="formula">lb(x) = log<sub>2</sub>(x)</div>
+            <p class="applications">
+              Usado em computação e teoria da informação
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="caracteristicas" data-aos="fade-up">
+        <h2>Características das Funções Logarítmicas</h2>
+        <div class="properties-grid">
+          <div class="property-card">
+            <h3>Crescimento e Decrescimento</h3>
+            <ul class="propriedades-list">
+              <li>
+                <strong>Base > 1:</strong> Função estritamente crescente
+                <div class="example">Exemplo: log₂(x), log₁₀(x)</div>
+              </li>
+              <li>
+                <strong>0 < Base < 1:</strong> Função estritamente decrescente
+                <div class="example">Exemplo: log₀.₅(x)</div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="property-card">
+            <h3>Pontos Notáveis</h3>
+            <ul class="propriedades-list">
+              <li>
+                <strong>Ponto (1,0):</strong> Toda função logarítmica passa por
+                (1,0)
+              </li>
+              <li>
+                <strong>Ponto (b,1):</strong> Toda função logarítmica passa por
+                (b,1), onde b é a base
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="aplicacoes" data-aos="fade-up" data-aos-delay="400">
+        <h2>Aplicações dos Logaritmos</h2>
+        <p>Os logaritmos têm diversas aplicações em áreas como:</p>
+        <ul class="aplicacoes-list">
+          <li>Ciências Naturais (Física, Química)</li>
+          <li>Engenharia</li>
+          <li>Finanças (Juros Compostos)</li>
+          <li>Ciência da Computação (Algoritmos e Complexidade)</li>
+          <li>Escalas de Medição (pH, Decibéis)</li>
+        </ul>
+      </section>
+
+      <section id="aplicacoes-praticas" data-aos="fade-up">
+        <h2>Aplicações Práticas</h2>
+        <div class="special-types-grid">
+          <div class="type-card">
+            <h3>Escala Richter</h3>
+            <p>Mede a magnitude de terremotos usando logaritmos de base 10</p>
+            <div class="formula">M = log₁₀(A/A₀)</div>
+            <p class="applications">Onde A é a amplitude da onda sísmica</p>
+          </div>
+
+          <div class="type-card">
+            <h3>Escala pH</h3>
+            <p>Mede a acidez/basicidade usando logaritmos de base 10</p>
+            <div class="formula">pH = -log₁₀[H⁺]</div>
+            <p class="applications">Onde [H⁺] é a concentração de íons H⁺</p>
+          </div>
+
+          <div class="type-card">
+            <h3>Escala Decibel</h3>
+            <p>Mede intensidade sonora usando logaritmos de base 10</p>
+            <div class="formula">dB = 10·log₁₀(I/I₀)</div>
+            <p class="applications">Onde I é a intensidade do som</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="exercicios" data-aos="fade-up">
+        <h2>Exercícios Práticos</h2>
+        <div class="exercicios-container">
+          <div class="exercicio-grupo">
+            <h3>Exercícios Básicos</h3>
+            <ol class="exercicios-list">
+              <li>
+                Calcule log<sub>2</sub>(32)
+                <div class="dica">
+                  Sugestão: Utiliza logaritmo na base 2 para resolver este
+                  problema
+                </div>
+                <button class="show-answer-btn">
+                  <i class="fas fa-eye"></i>
+                  Mostrar Resolução
+                </button>
+                <div class="answer-content">
+                  <ul class="steps">
+                    <li>Procuramos x tal que 2ˣ = 32</li>
+                    <li>Sabemos que 2⁵ = 32</li>
+                    <li>Portanto, log₂(32) = 5</li>
+                  </ul>
+                  <div class="final-answer">Solução: 5</div>
+                </div>
+              </li>
+              <li>
+                Determine log<sub>3</sub>(27)
+                <div class="dica">Dica: 3³ = 27</div>
+                <button class="show-answer-btn">
+                  <i class="fas fa-eye"></i>
+                  Mostrar Resolução
+                </button>
+                <div class="answer-content">
+                  <ul class="steps">
+                    <li>Procuramos x tal que 3ˣ = 27</li>
+                    <li>Sabemos que 3³ = 27</li>
+                    <li>Portanto, log₃(27) = 3</li>
+                  </ul>
+                  <div class="final-answer">Resposta: 3</div>
+                </div>
+              </li>
+              <li>
+                Resolva log<sub>5</sub>(125)
+                <div class="dica">Dica: 5³ = 125</div>
+                <button class="show-answer-btn">
+                  <i class="fas fa-eye"></i>
+                  Mostrar Resolução
+                </button>
+                <div class="answer-content">
+                  <ul class="steps">
+                    <li>Procuramos x tal que 5ˣ = 125</li>
+                    <li>Sabemos que 5³ = 125</li>
+                    <li>Portanto, log₅(125) = 3</li>
+                  </ul>
+                  <div class="final-answer">Resposta: 3</div>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="exercicio-grupo">
+            <h3>Exercícios com Propriedades</h3>
+            <ol class="exercicios-list">
+              <li>
+                Simplifique log₂(16) + log₂(4)
+                <div class="dica">Dica: Use a propriedade do produto</div>
+                <button class="show-answer-btn">
+                  <i class="fas fa-eye"></i>
+                  Mostrar Resolução
+                </button>
+                <div class="answer-content">
+                  <ul class="steps">
+                    <li>log₂(16) + log₂(4) = log₂(16·4)</li>
+                    <li>log₂(16·4) = log₂(64)</li>
+                    <li>log₂(64) = 6</li>
+                  </ul>
+                  <div class="final-answer">Resposta: 6</div>
+                </div>
+              </li>
+              <li>
+                Calcule log₃(81/9)
+                <div class="dica">Dica: Use a propriedade do quociente</div>
+                <button class="show-answer-btn">
+                  <i class="fas fa-eye"></i>
+                  Mostrar Resolução
+                </button>
+                <div class="answer-content">
+                  <ul class="steps">
+                    <li>log₃(81/9) = log₃(81) - log₃(9)</li>
+                    <li>log₃(81) = 4 e log₃(9) = 2</li>
+                    <li>log₃(81/9) = 4 - 2 = 2</li>
+                  </ul>
+                  <div class="final-answer">Resposta: 2</div>
+                </div>
+              </li>
+              <li>
+                Determine log₄(256)
+                <div class="dica">Dica: 256 = 4⁴</div>
+                <button class="show-answer-btn">
+                  <i class="fas fa-eye"></i>
+                  Mostrar Resolução
+                </button>
+                <div class="answer-content">
+                  <ul class="steps">
+                    <li>log₄(256) = log₄(4⁴)</li>
+                    <li>log₄(4⁴) = 4·log₄(4)</li>
+                    <li>log₄(4) = 1</li>
+                    <li>log₄(256) = 4·1 = 4</li>
+                  </ul>
+                  <div class="final-answer">Resposta: 4</div>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section id="resolucao-problemas" data-aos="fade-up">
+        <h2>Resolução de Problemas</h2>
+        <div class="exercicios-container">
+          <div class="exercicio-grupo">
+            <h3>Problema 1: Crescimento Populacional</h3>
+            <p>
+              Uma população de bactérias dobra a cada hora. Se começamos com
+              1000 bactérias, após quantas horas teremos 64000 bactérias?
+            </p>
+            <div class="dica">
+              Dica: Use logaritmo na base 2 para resolver este problema
             </div>
-            <div class="log-type">
-              <h4>Logaritmo Decimal</h4>
-              <p>Base 10</p>
-              <div class="formula">log(x) = log<sub>10</sub>(x)</div>
+            <button class="show-answer-btn">
+              <i class="fas fa-eye"></i>
+              Mostrar Resolução
+            </button>
+            <div class="answer-content">
+              <ul class="steps">
+                <li>64000 = 1000 · 2ˣ (onde x é o número de horas)</li>
+                <li>64 = 2ˣ</li>
+                <li>log₂(64) = x</li>
+                <li>6 = x (pois 2⁶ = 64)</li>
+              </ul>
+              <div class="final-answer">Solução: 6 horas</div>
             </div>
-            <div class="log-type">
-              <h4>Logaritmo Binário</h4>
-              <p>Base 2</p>
-              <div class="formula">log<sub>2</sub>(x)</div>
+          </div>
+
+          <div class="exercicio-grupo">
+            <h3>Problema 2: Juros Compostos</h3>
+            <p>
+              Em quanto tempo um investimento dobra de valor a uma taxa de 7% ao
+              ano?
+            </p>
+            <div class="dica">
+              Dica: Use a fórmula de juros compostos M = C(1 + i)ᵗ
+            </div>
+            <button class="show-answer-btn">
+              <i class="fas fa-eye"></i>
+              Mostrar Resolução
+            </button>
+            <div class="answer-content">
+              <ul class="steps">
+                <li>2 = (1 + 0.07)ᵗ</li>
+                <li>log(2) = t · log(1.07)</li>
+                <li>t = log(2)/log(1.07)</li>
+                <li>t ≈ 10.24 anos</li>
+              </ul>
+              <div class="final-answer">
+                Resposta: Aproximadamente 10.24 anos
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="propriedades" class="section">
-        <h2>Propriedades dos Logaritmos</h2>
-        <div class="card">
-          <div class="grid">
-            <div>
-              <h3>Propriedades Fundamentais</h3>
-              <div class="formula">
-                log<sub>b</sub>(1) = 0<br />
-                log<sub>b</sub>(b) = 1<br />
-                b<sup>log<sub>b</sub>(x)</sup> = x
-              </div>
-            </div>
-            <div>
-              <h3>Domínio e Imagem</h3>
-              <p>Domínio: x > 0</p>
-              <p>Imagem: ℝ (todos os números reais)</p>
-            </div>
+      <section id="curiosidades" data-aos="fade-up">
+        <h2>Curiosidades e Fatos Interessantes</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Origem do Nome</h3>
+            <p>
+              A palavra "logaritmo" vem do grego: "logos" (razão) e "arithmos"
+              (número)
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Regra de Slide</h3>
+            <p>
+              Antes das calculadoras, engenheiros usavam réguas de cálculo
+              baseadas em logaritmos
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h3>Complexidade Algorítmica</h3>
+            <p>
+              Algoritmos com complexidade logarítmica (log n) são considerados
+              muito eficientes
+            </p>
           </div>
         </div>
+      </section>
 
-        <div class="card">
-          <h3>Gráfico da Função Logarítmica</h3>
-          <div class="chart-container">
-            <canvas id="logChart"></canvas>
+      <section id="calculadora">
+        <h2>Calculadora Gráfica</h2>
+        <div class="calculator">
+          <div class="inputs">
+            <div class="input-group">
+              <label>Número (x):</label>
+              <input
+                type="number"
+                id="numberInput"
+                placeholder="Introduz um número positivo"
+              />
+            </div>
+            <div class="input-group">
+              <label>Base (b):</label>
+              <input type="number" id="baseInput" value="16" />
+            </div>
+            <p class="error-message">
+              Por favor, introduz valores válidos (números positivos, base ≠ 1)
+            </p>
           </div>
-          <div class="interactive-demo">
-            <div class="controls">
+
+          <div class="graph">
+            <canvas id="logChart"></canvas>
+            <div class="graph-controls">
               <label for="baseSlider">Base do logaritmo:</label>
               <input
                 type="range"
@@ -109,262 +541,148 @@
               />
               <span id="baseValue">2.0</span>
             </div>
-          </div>
-        </div>
-      </section>
+            <div class="graph-legend">
+              <div class="graph-legend-item">
+                <div
+                  class="graph-legend-color"
+                  style="background: var(--primary-color)"
+                ></div>
+                <span>Função Logarítmica</span>
+              </div>
+              <div class="graph-legend-item">
+                <div
+                  class="graph-legend-color"
+                  style="background: var(--accent-color)"
+                ></div>
+                <span>Pontos de Referência</span>
+              </div>
+            </div>
 
-      <section id="regras" class="section">
-        <h2>Regras Operatórias</h2>
-        <div class="grid">
-          <div class="card">
-            <h3>Produto</h3>
-            <div class="formula">
-              log<sub>b</sub>(x · y) = log<sub>b</sub>(x) + log<sub>b</sub>(y)
-            </div>
-            <div class="example">
-              <p>Exemplo:</p>
-              <p>log(20) = log(4 · 5) = log(4) + log(5)</p>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Quociente</h3>
-            <div class="formula">
-              log<sub>b</sub>(x/y) = log<sub>b</sub>(x) - log<sub>b</sub>(y)
-            </div>
-            <div class="example">
-              <p>Exemplo:</p>
-              <p>log(8/2) = log(8) - log(2)</p>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Potência</h3>
-            <div class="formula">
-              log<sub>b</sub>(x<sup>n</sup>) = n · log<sub>b</sub>(x)
-            </div>
-            <div class="example">
-              <p>Exemplo:</p>
-              <p>log(2³) = 3 · log(2)</p>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3>Mudança de Base</h3>
-            <div class="formula">
-              log<sub>b</sub>(x) = log<sub>c</sub>(x) / log<sub>c</sub>(b)
-            </div>
-            <div class="example">
-              <p>Exemplo:</p>
-              <p>log<sub>2</sub>(8) = ln(8) / ln(2)</p>
+            <div class="graph-info">
+              <h4>Informações do Gráfico:</h4>
+              <ul>
+                <li>O eixo X representa os valores de entrada</li>
+                <li>O eixo Y mostra o resultado do logaritmo</li>
+                <li>A função é contínua para x > 0</li>
+                <li>O ponto (1, 0) pertence sempre ao gráfico</li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="aplicacoes" class="section">
-        <h2>Aplicações Práticas</h2>
-        <div class="grid">
-          <div class="card">
-            <h3>Ciências</h3>
-            <ul>
-              <li>
-                <h4>Escala Richter</h4>
-                <p>Medindo a magnitude de terremotos</p>
-                <div class="formula">M = log(A) + C</div>
-              </li>
-              <li>
-                <h4>pH em Química</h4>
-                <p>Medindo acidez/basicidade</p>
-                <div class="formula">pH = -log[H⁺]</div>
-              </li>
-              <li>
-                <h4>Intensidade Sonora</h4>
-                <p>Medindo em decibéis</p>
-                <div class="formula">dB = 10 · log(I/I₀)</div>
-              </li>
+      <section id="resolucao-equacoes" data-aos="fade-up">
+        <h2>Resolução de Equações Logarítmicas</h2>
+        <div class="exercicios-container">
+          <div class="exercicio-grupo">
+            <h3>Tipos Comuns de Equações</h3>
+            <ul class="propriedades-list">
+              <li>logb(x) = k</li>
+              <li>logb(x) = logb(y)</li>
+              <li>logb(f(x)) = logb(g(x))</li>
+              <li>logb(x) + logb(y) = k</li>
+              <li>logb(x²) = 2logb(x)</li>
             </ul>
-          </div>
 
-          <div class="card">
-            <h3>Computação</h3>
-            <ul>
-              <li>
-                <h4>Análise de Algoritmos</h4>
-                <p>Complexidade logarítmica</p>
-              </li>
-              <li>
-                <h4>Compressão de Dados</h4>
-                <p>Codificação de Huffman</p>
-              </li>
-              <li>
-                <h4>Criptografia</h4>
-                <p>Logaritmos discretos</p>
-              </li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>Finanças</h3>
-            <ul>
-              <li>
-                <h4>Juros Compostos</h4>
-                <p>Tempo de dobra do investimento:</p>
-                <div class="formula">T = log₂(2)/log₂(1 + r)</div>
-              </li>
-              <li>
-                <h4>Depreciação</h4>
-                <p>Cálculo do valor ao longo do tempo</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="calculadora" class="section">
-        <h2>Calculadora de Logaritmos</h2>
-        <div class="card calculator">
-          <div class="input-group">
-            <label for="numberInput">Número:</label>
-            <input
-              type="number"
-              id="numberInput"
-              min="0.1"
-              step="0.1"
-              placeholder="Digite um número positivo"
-            />
-          </div>
-          <div class="input-group">
-            <label for="baseInput">Base:</label>
-            <input
-              type="number"
-              id="baseInput"
-              min="0.1"
-              step="0.1"
-              value="10"
-              placeholder="Digite a base"
-            />
-          </div>
-          <button id="calculateBtn" class="button">Calcular</button>
-          <div id="calculatorResult" class="result"></div>
-        </div>
-      </section>
-
-      <section id="exemplos" class="section">
-        <h2>Exemplos Resolvidos</h2>
-        <div class="grid">
-          <div class="card example">
-            <h3>Exemplo 1: Propriedade do Produto</h3>
-            <div class="problem">
-              <p>Calcular log(12) usando a propriedade do produto</p>
-            </div>
-            <div class="solution">
+            <div class="exemplo-resolucao">
+              <h4>Exemplo Resolvido: log₂(x - 3) = 3</h4>
               <ol>
-                <li>log(12) = log(3 · 4)</li>
-                <li>= log(3) + log(4)</li>
-                <li>≈ 0,477 + 0,602</li>
-                <li>≈ 1,079</li>
-              </ol>
-            </div>
-          </div>
-
-          <div class="card example">
-            <h3>Exemplo 2: Mudança de Base</h3>
-            <div class="problem">
-              <p>Calcular log₂(8) usando mudança de base</p>
-            </div>
-            <div class="solution">
-              <ol>
-                <li>log₂(8) = ln(8) / ln(2)</li>
-                <li>= 2,0794 / 0,6931</li>
-                <li>= 3</li>
+                <li>2³ = x - 3</li>
+                <li>8 = x - 3</li>
+                <li>x = 11</li>
+                <li>Verificação: log₂(11 - 3) = log₂(8) = 3 ✓</li>
               </ol>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="exercicios" class="section">
-        <h2>Exercícios Práticos</h2>
-        <div class="grid">
-          <div class="card exercise">
-            <h3>Exercício 1</h3>
-            <div class="problem">
-              <p>Calcule o valor de x na equação:</p>
-              <div class="formula">log₂(x) + log₂(x+1) = 3</div>
-            </div>
-            <button class="button toggle-solution">Ver Solução</button>
-            <div class="solution" style="display: none">
-              <ol>
-                <li>
-                  Usando a propriedade do produto:
-                  <div class="formula">log₂(x(x+1)) = 3</div>
-                </li>
-                <li>
-                  Aplicando a definição:
-                  <div class="formula">x(x+1) = 2³ = 8</div>
-                </li>
-                <li>
-                  Resolvendo a equação quadrática:
-                  <div class="formula">x² + x - 8 = 0</div>
-                </li>
-                <li>x = 2 (x = -4 não pertence ao domínio)</li>
-              </ol>
-            </div>
+      <section id="derivadas" data-aos="fade-up">
+        <h2>Derivadas dos Logaritmos</h2>
+        <div class="formula-grid">
+          <div class="formula-card">
+            <h3>Logaritmo Natural</h3>
+            <div class="formula">d/dx[ln(x)] = 1/x</div>
           </div>
+          <div class="formula-card">
+            <h3>Logaritmo Geral</h3>
+            <div class="formula">d/dx[logb(x)] = 1/(x×ln(b))</div>
+          </div>
+        </div>
+      </section>
 
-          <div class="card exercise">
-            <h3>Exercício 2</h3>
-            <div class="problem">
-              <p>Simplifique a expressão:</p>
-              <div class="formula">log₃(27) + log₃(9) - log₃(3)</div>
-            </div>
-            <button class="button toggle-solution">Ver Solução</button>
-            <div class="solution" style="display: none">
-              <ol>
-                <li>log₃(27) = 3 (pois 3³ = 27)</li>
-                <li>log₃(9) = 2 (pois 3² = 9)</li>
-                <li>log₃(3) = 1</li>
-                <li>3 + 2 - 1 = 4</li>
-              </ol>
-            </div>
+      <section id="erros-comuns" data-aos="fade-up">
+        <h2>Erros Comuns a Evitar</h2>
+        <div class="warning-grid">
+          <div class="warning-card">
+            <h3>⚠️ Domínio</h3>
+            <p>Verifica sempre se os argumentos são positivos</p>
+          </div>
+          <div class="warning-card">
+            <h3>⚠️ Propriedades</h3>
+            <p>Não confundas as propriedades de produto com soma</p>
+          </div>
+          <div class="warning-card">
+            <h3>⚠️ Verificação</h3>
+            <p>Verifica sempre as soluções encontradas</p>
+          </div>
+          <div class="warning-card">
+            <h3>⚠️ Inequações</h3>
+            <p>Considera a base ao resolver inequações (> 1 ou entre 0 e 1)</p>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer-content">
-      <div class="container footer-grid">
+    <footer>
+      <div class="footer-content">
         <div class="footer-section">
-          <h3>Links</h3>
-          <ul>
-            <li><a href="#definicao">Definição</a></li>
-            <li><a href="#propriedades">Propriedades</a></li>
-            <li><a href="#regras">Regras</a></li>
-            <li><a href="#calculadora">Calculadora</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h3>Recursos Adicionais</h3>
-          <ul>
-            <li><a href="#exemplos">Exemplos Resolvidos</a></li>
-            <li><a href="#exercicios">Exercícios Práticos</a></li>
-            <li><a href="#aplicacoes">Aplicações</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <p>© 2024 Funções Logarítmicas</p>
+          <h3>Sobre</h3>
           <p>Realizado por Joel Dias TIIGR 22/25</p>
           <p>Escola Secundária de Tondela</p>
           <p>Disciplina de Matemática</p>
           <p>Professora Íris Macedo</p>
+          <div class="social-links"></div>
         </div>
+
+        <div class="footer-section">
+          <h3>Links Úteis</h3>
+          <ul class="footer-links">
+            <li><a href="#definicao">📚 Definição</a></li>
+            <li><a href="#calculadora">🔢 Calculadora</a></li>
+            <li><a href="#exercicios">✏️ Exercícios</a></li>
+          </ul>
+        </div>
+        <img src="assets/logo.png" alt="Logo" class="footer-logo" />
+        <div class="footer-section"></div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2024 Funções Logarítmicas | Joel Dias TIIGR 3ºano</p>
       </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <button class="scroll-top" aria-label="Voltar ao topo">↑</button>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
+    <script>
+      document.querySelectorAll(".show-answer-btn").forEach((button) => {
+        button.addEventListener("click", function () {
+          const answerContent = this.nextElementSibling;
+          const isVisible = answerContent.classList.contains("visible");
+
+          this.innerHTML = isVisible
+            ? '<i class="fas fa-eye"></i> Mostrar Resolução'
+            : '<i class="fas fa-eye-slash"></i> Ocultar Resolução';
+          answerContent.classList.toggle("visible");
+        });
+      });
+    </script>
   </body>
 </html>
